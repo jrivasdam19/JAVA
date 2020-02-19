@@ -1,6 +1,6 @@
 package empleado;
 
-import java.util.Scanner;
+import java.util.*;
 
 public final class Comercial extends Empleado {
 
@@ -49,6 +49,14 @@ public final class Comercial extends Empleado {
         System.out.println("Ha hecho " + this.getVentasRealizadas() + " ventas.");
         System.out.println("Tiene de comisión " + this.getComision() + ".");
     }
+    public static void mostrarAtributosComercial(ArrayList<Empleado> listaEmpleados){
+        for (int i=0;i<listaEmpleados.size();i++){
+            if (listaEmpleados.get(i)instanceof Comercial){
+                listaEmpleados.get(i).mostrarAtributos(); //Ocultación del método padre.
+            }
+        }
+    }
+
     @Override
     public void pedirAlta() {
         Scanner lector = new Scanner(System.in);
@@ -57,5 +65,12 @@ public final class Comercial extends Empleado {
         this.setVentasRealizadas(lector.nextInt());
         System.out.println("Escribe la comisión.");
         this.setComision(lector.nextDouble());
+    }
+
+    public static Comercial pedirAltaComercial() {
+        Scanner lector = new Scanner(System.in);
+        Comercial c1 = new Comercial();
+        c1.pedirAlta();
+        return c1;
     }
 }

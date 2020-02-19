@@ -26,3 +26,4 @@ hs_err_pid*
 *.xml
 *.mf
 *.properties
+/Practica_5/build/
