@@ -68,7 +68,6 @@ public final class Comercial extends Empleado {
     }
 
     public static Comercial pedirAltaComercial() {
-        Scanner lector = new Scanner(System.in);
         Comercial c1 = new Comercial();
         c1.pedirAlta();
         return c1;

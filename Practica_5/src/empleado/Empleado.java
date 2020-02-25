@@ -130,7 +130,6 @@ public class Empleado {
     //en el caso de substring(1) coge desde la posición 1 hasta el final.
 
     public static Empleado pedirAltaEmpleado() {
-        Scanner lector = new Scanner(System.in);
         Empleado e1 = new Empleado();
         e1.pedirAlta();
         return e1;

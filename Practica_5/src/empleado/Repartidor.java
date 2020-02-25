@@ -69,7 +69,6 @@ public final class Repartidor extends Empleado {
     }
 
     public static Repartidor pedirAltaRepartidor() {
-        Scanner lector = new Scanner(System.in);
         Repartidor r1 = new Repartidor();
         r1.pedirAlta();
         return r1;
