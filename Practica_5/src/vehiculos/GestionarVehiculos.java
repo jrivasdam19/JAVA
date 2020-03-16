@@ -93,7 +93,7 @@ public class GestionarVehiculos {
 
     public static void buscarTaxiConcreto(ArrayList<Vehiculo> listaVehiculos) {
         Scanner lector = new Scanner(System.in);
-        System.out.println("Introduce del Id del taxi que buscas.");
+        System.out.println("Introduce el Id del taxi que buscas.");
         int busqueda = Integer.parseInt(lector.nextLine());
         boolean encontrado = false;
         boolean noEncontrado = false;

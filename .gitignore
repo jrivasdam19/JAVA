@@ -27,3 +27,8 @@ hs_err_pid*
 *.mf
 *.properties
 /Practica_5/build/
+/Practica_6/nbproject/private/
+/Practica_6/build/
+/SimulacroExamen/nbproject/private/
+/SimulacroExamen/build/
+/SolucionSimulacro/nbproject/private/
