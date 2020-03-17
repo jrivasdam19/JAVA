@@ -5,8 +5,6 @@ import java.util.*;
 public class Tetraedro implements FiguraBidimensional, FiguraTridimensional {
 
     private double arista;
-    private double area;
-    private double volumen;
 
     public double getArista() {
         return arista;
@@ -14,22 +12,6 @@ public class Tetraedro implements FiguraBidimensional, FiguraTridimensional {
 
     public void setArista(double arista) {
         this.arista = arista;
-    }
-
-    public double getArea() {
-        return area;
-    }
-
-    public void setArea(double area) {
-        this.area = area;
-    }
-
-    public double getVolumen() {
-        return volumen;
-    }
-
-    public void setVolumen(double volumen) {
-        this.volumen = volumen;
     }
 
     @Override
@@ -40,26 +22,56 @@ public class Tetraedro implements FiguraBidimensional, FiguraTridimensional {
     }
 
     @Override
-    public void calcularArea() {
-        this.setArea(Math.sqrt(3) * Math.pow(this.getArista(), 2));
-        System.out.println("El área del tetraedro es " + this.getArea() + " centímetros cuadrados.");
+    public void calcularArea(int i) throws RuntimeException, ExcepcionSignoPositivo {
+        if (i == 1) {
+            double area = Math.sqrt(3) * Math.pow(this.getArista(), 2);
+            System.out.println("El área del tetraedro es " + area + " centímetros cuadrados.");
+        } else if (i == 2) {
+            Scanner lector = new Scanner(System.in);
+            System.out.println("Introduce la arista.");
+            double arista = Double.parseDouble(lector.nextLine());
+            if (arista <= 0) {
+                throw new ExcepcionSignoPositivo();
+            }
+            double area = Math.sqrt(3) * Math.pow(arista, 2);
+            System.out.println("El área del tetraedro es " + area + " centímetros cuadrados.");
+        }
     }
 
     @Override
-    public void calcularVolumen() {
-        this.setVolumen((Math.sqrt(2) / 12) * Math.pow(this.getArista(), 2));
-        System.out.println("El volumen del tetraedro es " + this.getVolumen() + " centímetros cúbicos.");
+    public void calcularVolumen(int i) throws ExcepcionSignoPositivo {
+        if (i == 1) {
+            double volumen = (Math.sqrt(2) / 12) * Math.pow(this.getArista(), 2);
+            System.out.println("El volumen del tetraedro es " + volumen + " centímetros cúbicos.");
+        } else if (i == 2) {
+            try {
+                Scanner lector = new Scanner(System.in);
+                System.out.println("Introduce la arista.");
+                double arista = Double.parseDouble(lector.nextLine());
+                if (arista <= 0) {
+                    throw new ExcepcionSignoPositivo();
+                }
+                double volumen = (Math.sqrt(2) / 12) * Math.pow(arista, 2);
+                System.out.println("El volumen del tetraedro es " + volumen + " centímetros cúbicos.");
+            } catch (RuntimeException ex) {
+                System.out.println("Los valores introducidos no son "
+                        + "correctos. Vuelva a intentarlo.");
+                System.out.println("");
+                Tetraedro t1 = new Tetraedro();
+                t1.calcularVolumen(2);
+            }
+        }
     }
 
     @Override
-    public void imprimirCaracteristicas() {
+    public void imprimirCaracteristicas() throws ExcepcionSignoPositivo {
         System.out.println("La arista es de: " + this.getArista() + " centímetros.");
-        this.calcularArea();
-        this.calcularVolumen();
+        this.calcularArea(1);
+        this.calcularVolumen(1);
     }
-    
-    public static Tetraedro anyadirTetraedro(){
-        Tetraedro t1=new Tetraedro();
+
+    public static Tetraedro anyadirTetraedro() {
+        Tetraedro t1 = new Tetraedro();
         t1.anyadirFigura();
         return t1;
     }

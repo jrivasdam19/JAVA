@@ -6,8 +6,6 @@ public class Cilindro implements FiguraBidimensional, FiguraTridimensional {
 
     private double radio;
     private double altura;
-    private double area;
-    private double volumen;
 
     public double getRadio() {
         return radio;
@@ -25,22 +23,6 @@ public class Cilindro implements FiguraBidimensional, FiguraTridimensional {
         this.altura = altura;
     }
 
-    public double getArea() {
-        return area;
-    }
-
-    public void setArea(double area) {
-        this.area = area;
-    }
-
-    public double getVolumen() {
-        return volumen;
-    }
-
-    public void setVolumen(double volumen) {
-        this.volumen = volumen;
-    }
-
     @Override
     public void anyadirFigura() {
         Scanner lector = new Scanner(System.in);
@@ -51,27 +33,62 @@ public class Cilindro implements FiguraBidimensional, FiguraTridimensional {
     }
 
     @Override
-    public void calcularArea() {
-        this.setArea(2 * FiguraBidimensional.numeroPi * this.getRadio() * (this.getRadio() + this.getAltura()));
-        System.out.println("El área del cilindro es " + this.getArea() + " centímetros cuadrados.");
+    public void calcularArea(int i) throws RuntimeException, ExcepcionSignoPositivo {
+        if (i == 1) {
+            double area = 2 * FiguraBidimensional.numeroPi * this.getRadio() * (this.getRadio() + this.getAltura());
+            System.out.println("El área del cilindro es " + area + " centímetros cuadrados.");
+        } else if (i == 2) {
+            Scanner lector = new Scanner(System.in);
+            System.out.println("Introduce el radio.");
+            double radio = Double.parseDouble(lector.nextLine());
+            System.out.println("Introduce la altura.");
+            double altura = Double.parseDouble(lector.nextLine());
+            if(radio<=0 || altura<=0){
+                throw new ExcepcionSignoPositivo();
+            }
+            double area = 2 * FiguraBidimensional.numeroPi * radio * (radio + altura);            
+            System.out.println("El área del cilindro es " + area + " centímetros cuadrados.");
+        }
+
     }
 
     @Override
-    public void calcularVolumen() {
-        this.setVolumen(FiguraBidimensional.numeroPi * Math.pow(this.getRadio(), 2) * this.getAltura());
-        System.out.println("El volumen del cilindro es " + this.getVolumen() + " centímetros cúbicos.");
+    public void calcularVolumen(int i) throws ExcepcionSignoPositivo {
+        if (i == 1) {
+            double volumen = FiguraBidimensional.numeroPi * Math.pow(this.getRadio(), 2) * this.getAltura();
+            System.out.println("El volumen del cilindro es " + volumen + " centímetros cúbicos.");
+        } else if (i == 2) {
+            try {
+                Scanner lector = new Scanner(System.in);
+                System.out.println("Introduce el radio.");
+                double radio = Double.parseDouble(lector.nextLine());
+                System.out.println("Introduce la altura.");
+                double altura = Double.parseDouble(lector.nextLine());
+                if(radio<=0 || altura<=0){
+                throw new ExcepcionSignoPositivo();
+            }
+                double volumen = FiguraBidimensional.numeroPi * Math.pow(radio, 2) * altura;
+                System.out.println("El volumen del cilindro es " + volumen + " centímetros cúbicos.");
+            } catch (RuntimeException ex) {
+                System.out.println("Los valores introducidos no son "
+                                + "correctos. Vuelva a intentarlo.");
+                System.out.println("");
+                Cilindro c1=new Cilindro();
+                c1.calcularVolumen(2);
+            }
+        }
     }
 
     @Override
-    public void imprimirCaracteristicas() {
+    public void imprimirCaracteristicas() throws ExcepcionSignoPositivo  {
         System.out.println("El radio es: " + this.getRadio() + " centímetros.");
         System.out.println("La altura es: " + this.getAltura() + " centímetros.");
-        this.calcularArea();
-        this.calcularVolumen();
+        this.calcularArea(1);
+        this.calcularVolumen(1);
     }
-    
-    public static Cilindro anaydirCilindro(){
-        Cilindro c1=new Cilindro();
+
+    public static Cilindro anaydirCilindro() {
+        Cilindro c1 = new Cilindro();
         c1.anyadirFigura();
         return c1;
     }

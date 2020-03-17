@@ -4,28 +4,53 @@ import java.util.*;
 
 public class GestionarFiguras {
 
-    public static void imprimirFiguras(ArrayList<FiguraBidimensional> listaFiguras) {
-        for (FiguraBidimensional f: listaFiguras){
-            if(f instanceof Circulo){
-                ((Circulo)f).imprimirCaracteristicas();
+    public static void imprimirFiguras(ArrayList<FiguraBidimensional> listaFiguras) throws ExcepcionSignoPositivo {
+        for (FiguraBidimensional f : listaFiguras) {
+            if (f instanceof Circulo) {
+                ((Circulo) f).imprimirCaracteristicas();
             }
-            if(f instanceof Cilindro){
-                ((Cilindro)f).imprimirCaracteristicas();
+            if (f instanceof Cilindro) {
+                ((Cilindro) f).imprimirCaracteristicas();
             }
-            if(f instanceof Pentagono){
-                ((Pentagono)f).imprimirCaracteristicas();
+            if (f instanceof Pentagono) {
+                ((Pentagono) f).imprimirCaracteristicas();
             }
-            if(f instanceof Trapecio){
-                ((Trapecio)f).imprimirCaracteristicas();
+            if (f instanceof Trapecio) {
+                ((Trapecio) f).imprimirCaracteristicas();
             }
-            if(f instanceof Tetraedro){
-                ((Tetraedro)f).imprimirCaracteristicas();
+            if (f instanceof Tetraedro) {
+                ((Tetraedro) f).imprimirCaracteristicas();
             }
             System.out.println("");
         }
     }
 
-    
+    public static int menuFigurasBidimensionales() {
+        Scanner lector = new Scanner(System.in);
+        System.out.println("");
+        System.out.println("Elige una figura.");
+        System.out.println("");
+        System.out.println("1.- Círculo.");
+        System.out.println("2.- Pentágono.");
+        System.out.println("3.- Trapecio.");
+        System.out.println("4.- Cilindro.");
+        System.out.println("5.- Tetraedro.");
+        System.out.println("6.- Salir.");
+        int opcion = Integer.parseInt(lector.nextLine());
+        return opcion;
+    }
+
+    public static int menuFigurasTridimensionales() {
+        Scanner lector = new Scanner(System.in);
+        System.out.println("");
+        System.out.println("Elige una figura.");
+        System.out.println("");
+        System.out.println("1.- Cilindro.");
+        System.out.println("2.- Tetraedro.");
+        System.out.println("3.- Salir.");
+        int opcion = Integer.parseInt(lector.nextLine());
+        return opcion;
+    }
 
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
@@ -42,62 +67,109 @@ public class GestionarFiguras {
             int opcion = Integer.parseInt(lector.nextLine());
             switch (opcion) {
                 case 1:
-                case 2:
                     boolean interruptor2 = true;
                     while (interruptor2) {
-                        System.out.println("1.- Cículo.");
-                        System.out.println("2.- Pentágono.");
-                        System.out.println("3.- Trapecio.");
-                        System.out.println("4.- Cilindro.");
-                        System.out.println("5.- Tetraedro.");
-                        System.out.println("6.- Salir.");
-                        int opcion2 = Integer.parseInt(lector.nextLine());
+                        int opcion2 = menuFigurasBidimensionales();
                         switch (opcion2) {
                             case 1:
-                                if (opcion == 1) {
-                                    listaFiguras.add(Circulo.anyadirCirculo());
-                                }
-                                if (opcion == 2) {
-
-                                }
+                                Circulo.anyadirCirculo();
                                 break;
                             case 2:
-                                listaFiguras.add(Pentagono.anyadirPentagono());
+                                Pentagono.anyadirPentagono();
                                 break;
                             case 3:
-                                listaFiguras.add(Trapecio.anyadirTrapecio());
+                                Trapecio.anyadirTrapecio();
                                 break;
                             case 4:
-                                listaFiguras.add(Cilindro.anaydirCilindro());
+                                Cilindro.anaydirCilindro();
                                 break;
                             case 5:
-                                listaFiguras.add(Tetraedro.anyadirTetraedro());
+                                Tetraedro.anyadirTetraedro();
                                 break;
                             case 6:
-                                interruptor2 = false;
+                                interruptor = false;
                                 break;
                             default:
-                                System.out.println("Error. Opción incorrecta");
+                                System.out.println("Error. Opción incorrecta.");
                                 break;
-
                         }
                     }
                     break;
-                case 3:
-                    boolean interruptor3 = true;
-                    while (interruptor3) {
-                        System.out.println("1.- Cilindro.");
-                        System.out.println("2.- Tetraedro.");
-                        System.out.println("3.- Salir.");
-                        int opcion3 = Integer.parseInt(lector.nextLine());
-                        switch (opcion3) {
-                            case 1:
-
+                case 2:
+                    try {
+                        boolean interruptor3 = true;
+                        while (interruptor3) {
+                            int opcion3 = menuFigurasBidimensionales();
+                            switch (opcion3) {
+                                case 1:
+                                    Circulo c1 = new Circulo();
+                                    c1.calcularArea(2);
+                                    break;
+                                case 2:
+                                    Pentagono p1 = new Pentagono();
+                                    p1.calcularArea(2);
+                                    break;
+                                case 3:
+                                    Trapecio t1 = new Trapecio();
+                                    t1.calcularArea(2);
+                                    break;
+                                case 4:
+                                    Cilindro cil1 = new Cilindro();
+                                    cil1.calcularArea(2);
+                                    break;
+                                case 5:
+                                    Tetraedro tet1 = new Tetraedro();
+                                    tet1.calcularArea(2);
+                                    break;
+                                case 6:
+                                    interruptor3 = false;
+                                    break;
+                                default:
+                                    System.out.println("Error. Opción incorrecta");
+                                    break;
+                            }
                         }
+                    } catch (RuntimeException ex) {
+                        System.out.println("Los valores introducidos no son "
+                                + "correctos. Vuelva a intentarlo.");
+                        System.out.println("");
+                    } catch (ExcepcionSignoPositivo ex) {
+                        System.out.println("Las variables no pueden ser negativas.");
                     }
+                    break;
+                case 3:
+                    try {
+                        boolean interruptor4 = true;
+                        while (interruptor4) {
+                            int opcion4 = menuFigurasTridimensionales();
+                            switch (opcion4) {
+                                case 1:
+                                    Cilindro c1 = new Cilindro();
+                                    c1.calcularVolumen(2);
+                                    break;
+                                case 2:
+                                    Tetraedro t1 = new Tetraedro();
+                                    t1.calcularVolumen(2);
+                                    break;
+                                case 3:
+                                    interruptor4 = false;
+                                    break;
+                                default:
+                                    System.out.println("Error. Opción incorrecta.");
+                                    break;
+                            }
+                        }
+                    } catch (ExcepcionSignoPositivo ex) {
+                        System.out.println("Las variables no pueden ser negativas.");
+                    }
+                    break;
                 case 4:
-                    System.out.println("Calculadora de José Rivas.");
-                    imprimirFiguras(listaFiguras);
+                    try {
+                        System.out.println("Calculadora de José Rivas.");
+                        imprimirFiguras(listaFiguras);
+                    } catch (ExcepcionSignoPositivo ex) {
+                        System.out.println("Las variables no pueden ser negativas.");
+                    }
                     break;
                 case 5:
                     interruptor = false;
@@ -105,7 +177,6 @@ public class GestionarFiguras {
                 default:
                     System.out.println("Error. Opción incorrecta");
                     break;
-
             }
         }
     }

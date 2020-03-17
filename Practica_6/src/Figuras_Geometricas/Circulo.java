@@ -5,7 +5,6 @@ import java.util.*;
 public class Circulo implements FiguraBidimensional {
 
     private double radio;
-    private double area;
 
     public double getRadio() {
         return radio;
@@ -13,14 +12,6 @@ public class Circulo implements FiguraBidimensional {
 
     public void setRadio(double radio) {
         this.radio = radio;
-    }
-
-    public double getArea() {
-        return area;
-    }
-
-    public void setArea(double area) {
-        this.area = area;
     }
 
     public Circulo() {
@@ -34,19 +25,30 @@ public class Circulo implements FiguraBidimensional {
     }
 
     @Override
-    public void calcularArea() {
-        this.setArea(FiguraBidimensional.numeroPi * Math.pow(this.getRadio(), 2));
-        System.out.println("El área del círculo es " + this.getArea() + " centímetros cuadrados.");
+    public void calcularArea(int i) throws RuntimeException, ExcepcionSignoPositivo{
+        if (i == 1) {
+            double area = FiguraBidimensional.numeroPi * Math.pow(this.getRadio(), 2);
+            System.out.println("El área del círculo es " + area + " centímetros cuadrados.");
+        } else if (i == 2) {
+            Scanner lector = new Scanner(System.in);
+            System.out.println("Introduce el radio.");
+            double radio = Double.parseDouble(lector.nextLine());
+                        if(radio<=0){
+                throw new ExcepcionSignoPositivo();
+            }
+            double area = FiguraBidimensional.numeroPi * Math.pow(radio, 2);
+            System.out.println("El área del círculo es " + area + " centímetros cuadrados.");
+        }
     }
 
     @Override
-    public void imprimirCaracteristicas() {
+    public void imprimirCaracteristicas() throws ExcepcionSignoPositivo  {
         System.out.println("El radio es: " + this.getRadio() + " centímetros.");
-        this.calcularArea();
+        this.calcularArea(1);
     }
-    
-    public static Circulo anyadirCirculo(){
-        Circulo c1=new Circulo();
+
+    public static Circulo anyadirCirculo() {
+        Circulo c1 = new Circulo();
         c1.anyadirFigura();
         return c1;
     }

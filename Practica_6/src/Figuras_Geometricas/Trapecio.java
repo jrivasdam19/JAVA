@@ -7,7 +7,6 @@ public class Trapecio implements FiguraBidimensional {
     private double baseMenor;
     private double baseMayor;
     private double altura;
-    private double area;
 
     public double getBaseMenor() {
         return baseMenor;
@@ -33,14 +32,6 @@ public class Trapecio implements FiguraBidimensional {
         this.altura = altura;
     }
 
-    public double getArea() {
-        return area;
-    }
-
-    public void setArea(double area) {
-        this.area = area;
-    }
-
     @Override
     public void anyadirFigura() {
         Scanner lector = new Scanner(System.in);
@@ -53,21 +44,36 @@ public class Trapecio implements FiguraBidimensional {
     }
 
     @Override
-    public void calcularArea() {
-        this.setArea(((this.getBaseMenor() + this.getBaseMayor()) / 2) * this.getAltura());
-        System.out.println("El área del trapecio es " + this.getArea() + " centímetros cuadrados.");
+    public void calcularArea(int i) throws RuntimeException, ExcepcionSignoPositivo {
+        if (i == 1) {
+            double area = ((this.getBaseMenor() + this.getBaseMayor()) / 2) * this.getAltura();
+            System.out.println("El área del trapecio es " + area + " centímetros cuadrados.");
+        } else if (i == 2) {
+            Scanner lector = new Scanner(System.in);
+            System.out.println("Introduce la base menor.");
+            double baseMenor = Double.parseDouble(lector.nextLine());
+            System.out.println("Introduce la base mayor.");
+            double baseMayor = Double.parseDouble(lector.nextLine());
+            System.out.println("Introduce la altura.");
+            double altura = Double.parseDouble(lector.nextLine());
+                        if(baseMenor<=0 || baseMayor<=0 || altura<=0){
+                throw new ExcepcionSignoPositivo();
+            }
+            double area = ((baseMenor + baseMayor) / 2) * altura;
+            System.out.println("El área del trapecio es " + area + " centímetros cuadrados.");
+        }
     }
 
     @Override
-    public void imprimirCaracteristicas() {
+    public void imprimirCaracteristicas() throws ExcepcionSignoPositivo {
         System.out.println("La base menor es de: " + this.getBaseMenor() + " centímetros.");
         System.out.println("La base mayor es de: " + this.getBaseMayor() + " centímetros.");
         System.out.println("La altura es de: " + this.getAltura() + " centímetros.");
-        this.calcularArea();
+        this.calcularArea(1);
     }
-    
-    public static Trapecio anyadirTrapecio(){
-        Trapecio t1=new Trapecio();
+
+    public static Trapecio anyadirTrapecio() {
+        Trapecio t1 = new Trapecio();
         t1.anyadirFigura();
         return t1;
     }

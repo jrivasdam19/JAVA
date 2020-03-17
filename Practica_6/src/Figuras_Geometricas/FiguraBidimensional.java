@@ -6,8 +6,8 @@ public interface FiguraBidimensional {
     
     public abstract void anyadirFigura();
     
-    public abstract void calcularArea();
+    public abstract void calcularArea(int i) throws RuntimeException, ExcepcionSignoPositivo;
     
-    public abstract void imprimirCaracteristicas();
+    public abstract void imprimirCaracteristicas() throws ExcepcionSignoPositivo ;
     
 }
