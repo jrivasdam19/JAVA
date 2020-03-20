@@ -56,7 +56,7 @@ public class Trapecio implements FiguraBidimensional {
             double baseMayor = Double.parseDouble(lector.nextLine());
             System.out.println("Introduce la altura.");
             double altura = Double.parseDouble(lector.nextLine());
-                        if(baseMenor<=0 || baseMayor<=0 || altura<=0){
+            if (baseMenor <= 0 || baseMayor <= 0 || altura <= 0) {
                 throw new ExcepcionSignoPositivo();
             }
             double area = ((baseMenor + baseMayor) / 2) * altura;

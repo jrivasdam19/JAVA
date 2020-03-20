@@ -1,6 +1,7 @@
 package Loteria;
 
 public abstract class Apuesta {
+
     private String nombre;
     private String apellido;
     private int numApuesta;
@@ -42,23 +43,22 @@ public abstract class Apuesta {
         Apuesta.sigNumApuesta = sigNumApuesta;
     }
 
-    
     public Apuesta(String nombre, String apellido, int numApuesta) {
         this.setNombre(nombre);
         this.setApellido(apellido);
         this.setNumApuesta(sigNumApuesta++);
     }
-    
-    public Apuesta(Apuesta a1){
+
+    public Apuesta(Apuesta a1) {
         this.setNombre(a1.getNombre());
         this.setApellido(a1.getApellido());
         this.setNumApuesta(a1.getNumApuesta());
     }
-    
-    public void mostrarApuesta(){
-        System.out.println("Nombre: "+this.getNombre());
-        System.out.println("Apellido: "+this.getApellido());
-        System.out.println("Número de apuesta: "+this.getNumApuesta());
+
+    public void mostrarApuesta() {
+        System.out.println("Nombre: " + this.getNombre());
+        System.out.println("Apellido: " + this.getApellido());
+        System.out.println("Número de apuesta: " + this.getNumApuesta());
     }
-    
+
 }

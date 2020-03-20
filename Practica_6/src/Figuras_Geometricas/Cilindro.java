@@ -43,10 +43,10 @@ public class Cilindro implements FiguraBidimensional, FiguraTridimensional {
             double radio = Double.parseDouble(lector.nextLine());
             System.out.println("Introduce la altura.");
             double altura = Double.parseDouble(lector.nextLine());
-            if(radio<=0 || altura<=0){
+            if (radio <= 0 || altura <= 0) {
                 throw new ExcepcionSignoPositivo();
             }
-            double area = 2 * FiguraBidimensional.numeroPi * radio * (radio + altura);            
+            double area = 2 * FiguraBidimensional.numeroPi * radio * (radio + altura);
             System.out.println("El área del cilindro es " + area + " centímetros cuadrados.");
         }
 
@@ -64,23 +64,23 @@ public class Cilindro implements FiguraBidimensional, FiguraTridimensional {
                 double radio = Double.parseDouble(lector.nextLine());
                 System.out.println("Introduce la altura.");
                 double altura = Double.parseDouble(lector.nextLine());
-                if(radio<=0 || altura<=0){
-                throw new ExcepcionSignoPositivo();
-            }
+                if (radio <= 0 || altura <= 0) {
+                    throw new ExcepcionSignoPositivo();
+                }
                 double volumen = FiguraBidimensional.numeroPi * Math.pow(radio, 2) * altura;
                 System.out.println("El volumen del cilindro es " + volumen + " centímetros cúbicos.");
             } catch (RuntimeException ex) {
                 System.out.println("Los valores introducidos no son "
-                                + "correctos. Vuelva a intentarlo.");
+                        + "correctos. Vuelva a intentarlo.");
                 System.out.println("");
-                Cilindro c1=new Cilindro();
+                Cilindro c1 = new Cilindro();
                 c1.calcularVolumen(2);
             }
         }
     }
 
     @Override
-    public void imprimirCaracteristicas() throws ExcepcionSignoPositivo  {
+    public void imprimirCaracteristicas() throws ExcepcionSignoPositivo {
         System.out.println("El radio es: " + this.getRadio() + " centímetros.");
         System.out.println("La altura es: " + this.getAltura() + " centímetros.");
         this.calcularArea(1);

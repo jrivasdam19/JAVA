@@ -25,7 +25,7 @@ public class Circulo implements FiguraBidimensional {
     }
 
     @Override
-    public void calcularArea(int i) throws RuntimeException, ExcepcionSignoPositivo{
+    public void calcularArea(int i) throws RuntimeException, ExcepcionSignoPositivo {
         if (i == 1) {
             double area = FiguraBidimensional.numeroPi * Math.pow(this.getRadio(), 2);
             System.out.println("El área del círculo es " + area + " centímetros cuadrados.");
@@ -33,7 +33,7 @@ public class Circulo implements FiguraBidimensional {
             Scanner lector = new Scanner(System.in);
             System.out.println("Introduce el radio.");
             double radio = Double.parseDouble(lector.nextLine());
-                        if(radio<=0){
+            if (radio <= 0) {
                 throw new ExcepcionSignoPositivo();
             }
             double area = FiguraBidimensional.numeroPi * Math.pow(radio, 2);
@@ -42,7 +42,7 @@ public class Circulo implements FiguraBidimensional {
     }
 
     @Override
-    public void imprimirCaracteristicas() throws ExcepcionSignoPositivo  {
+    public void imprimirCaracteristicas() throws ExcepcionSignoPositivo {
         System.out.println("El radio es: " + this.getRadio() + " centímetros.");
         this.calcularArea(1);
     }
