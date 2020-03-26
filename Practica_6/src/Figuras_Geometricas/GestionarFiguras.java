@@ -4,54 +4,6 @@ import java.util.*;
 
 public class GestionarFiguras {
 
-    public static void imprimirFiguras(ArrayList<FiguraBidimensional> listaFiguras) throws ExcepcionSignoPositivo {
-        for (FiguraBidimensional f : listaFiguras) {
-            if (f instanceof Circulo) {
-                ((Circulo) f).imprimirCaracteristicas();
-            }
-            if (f instanceof Cilindro) {
-                ((Cilindro) f).imprimirCaracteristicas();
-            }
-            if (f instanceof Pentagono) {
-                ((Pentagono) f).imprimirCaracteristicas();
-            }
-            if (f instanceof Trapecio) {
-                ((Trapecio) f).imprimirCaracteristicas();
-            }
-            if (f instanceof Tetraedro) {
-                ((Tetraedro) f).imprimirCaracteristicas();
-            }
-            System.out.println("");
-        }
-    }
-
-    public static int menuFigurasBidimensionales() {
-        Scanner lector = new Scanner(System.in);
-        System.out.println("");
-        System.out.println("Elige una figura.");
-        System.out.println("");
-        System.out.println("1.- Círculo.");
-        System.out.println("2.- Pentágono.");
-        System.out.println("3.- Trapecio.");
-        System.out.println("4.- Cilindro.");
-        System.out.println("5.- Tetraedro.");
-        System.out.println("6.- Salir.");
-        int opcion = Integer.parseInt(lector.nextLine());
-        return opcion;
-    }
-
-    public static int menuFigurasTridimensionales() {
-        Scanner lector = new Scanner(System.in);
-        System.out.println("");
-        System.out.println("Elige una figura.");
-        System.out.println("");
-        System.out.println("1.- Cilindro.");
-        System.out.println("2.- Tetraedro.");
-        System.out.println("3.- Salir.");
-        int opcion = Integer.parseInt(lector.nextLine());
-        return opcion;
-    }
-
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
         ArrayList<FiguraBidimensional> listaFiguras = new ArrayList();
@@ -133,8 +85,11 @@ public class GestionarFiguras {
                         System.out.println("Los valores introducidos no son "
                                 + "correctos. Vuelva a intentarlo.");
                         System.out.println("");
+                        ex.printStackTrace();
                     } catch (ExcepcionSignoPositivo ex) {
                         System.out.println("Las variables no pueden ser negativas.");
+                        System.out.println("");
+                        ex.printStackTrace();
                     }
                     break;
                 case 3:
@@ -161,6 +116,8 @@ public class GestionarFiguras {
                         }
                     } catch (ExcepcionSignoPositivo ex) {
                         System.out.println("Las variables no pueden ser negativas.");
+                        System.out.println("");
+                        ex.printStackTrace();
                     }
                     break;
                 case 4:
@@ -169,6 +126,8 @@ public class GestionarFiguras {
                         imprimirFiguras(listaFiguras);
                     } catch (ExcepcionSignoPositivo ex) {
                         System.out.println("Las variables no pueden ser negativas.");
+                        System.out.println("");
+                        ex.printStackTrace();
                     }
                     break;
                 case 5:
@@ -179,5 +138,53 @@ public class GestionarFiguras {
                     break;
             }
         }
+    }
+
+    public static void imprimirFiguras(ArrayList<FiguraBidimensional> listaFiguras) throws ExcepcionSignoPositivo {
+        for (FiguraBidimensional f : listaFiguras) {
+            if (f instanceof Circulo) {
+                ((Circulo) f).imprimirCaracteristicas();
+            }
+            if (f instanceof Cilindro) {
+                ((Cilindro) f).imprimirCaracteristicas();
+            }
+            if (f instanceof Pentagono) {
+                ((Pentagono) f).imprimirCaracteristicas();
+            }
+            if (f instanceof Trapecio) {
+                ((Trapecio) f).imprimirCaracteristicas();
+            }
+            if (f instanceof Tetraedro) {
+                ((Tetraedro) f).imprimirCaracteristicas();
+            }
+            System.out.println("");
+        }
+    }
+
+    public static int menuFigurasBidimensionales() {
+        Scanner lector = new Scanner(System.in);
+        System.out.println("");
+        System.out.println("Elige una figura.");
+        System.out.println("");
+        System.out.println("1.- Círculo.");
+        System.out.println("2.- Pentágono.");
+        System.out.println("3.- Trapecio.");
+        System.out.println("4.- Cilindro.");
+        System.out.println("5.- Tetraedro.");
+        System.out.println("6.- Salir.");
+        int opcion = Integer.parseInt(lector.nextLine());
+        return opcion;
+    }
+
+    public static int menuFigurasTridimensionales() {
+        Scanner lector = new Scanner(System.in);
+        System.out.println("");
+        System.out.println("Elige una figura.");
+        System.out.println("");
+        System.out.println("1.- Cilindro.");
+        System.out.println("2.- Tetraedro.");
+        System.out.println("3.- Salir.");
+        int opcion = Integer.parseInt(lector.nextLine());
+        return opcion;
     }
 }

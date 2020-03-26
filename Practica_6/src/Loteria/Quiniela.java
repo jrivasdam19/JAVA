@@ -44,20 +44,23 @@ public class Quiniela extends Apuesta {
         System.out.println("Aciertos: " + this.getAciertos());
         System.out.print("Quiniela: ");
         for (String valor : this.getListaOpciones()) {
-            System.out.println(valor + " ");
+            System.out.print(valor + " ");
         }
+        System.out.println("");
     }
 
     public static Quiniela crearApuestaQuiniela() throws ExcepcionFaltaMayuscula {
         Scanner lector = new Scanner(System.in);
         Quiniela q1 = new Quiniela();
         q1.setNumApuesta(Apuesta.getSigNumApuesta() + 1);
+        System.out.println("");
         System.out.println("Introduce tu nombre en mayúscula.");
         String nombre = lector.nextLine();
         if (!nombre.equals(nombre.toUpperCase())) {
             throw new ExcepcionFaltaMayuscula(001);
         }
         q1.setNombre(nombre);
+        System.out.println("");
         System.out.println("Introduce tu apellido en mayúscula.");
         String apellido = lector.nextLine();
         if (!apellido.equals(apellido.toUpperCase())) {
@@ -65,6 +68,7 @@ public class Quiniela extends Apuesta {
         }
         q1.setApellido(apellido);
         q1.setListaOpciones(q1.getListaOpciones());
+        System.out.println("");
         System.out.println("Introduce los 15 resultados de los partidos.\n"
                 + "1 Si ganará el equipo local.\nx Si empatarán.\n2 Si ganará"
                 + " el equipo visitante.");

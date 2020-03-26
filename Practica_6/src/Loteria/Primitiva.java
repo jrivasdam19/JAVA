@@ -41,23 +41,26 @@ public class Primitiva extends Apuesta {
     @Override
     public void mostrarApuesta() {
         super.mostrarApuesta();
-        System.out.println("Aciertos: " + this.getAciertos());
+        System.out.println("Aciertos: " + this.getAciertos()+".");
         System.out.print("Primitiva: ");
         for (int elemento : this.getListaNum()) {
             System.out.print(elemento + " ");
         }
+        System.out.println("");
     }
 
     public static Primitiva crearApuestaPrimitiva() throws ExcepcionFaltaMayuscula {
         Scanner lector = new Scanner(System.in);
         Primitiva p1 = new Primitiva();
         p1.setNumApuesta(Apuesta.getSigNumApuesta() + 1);
+        System.out.println("");
         System.out.println("Introduce tu nombre en mayúscula.");
         String nombre = lector.nextLine();
         if (!nombre.equals(nombre.toUpperCase())) {
             throw new ExcepcionFaltaMayuscula(001);
         }
         p1.setNombre(nombre);
+        System.out.println("");
         System.out.println("Introduce tu apellido en mayúscula.");
         String apellido = lector.nextLine();
         if (!apellido.equals(apellido.toUpperCase())) {
@@ -65,6 +68,7 @@ public class Primitiva extends Apuesta {
         }
         p1.setApellido(apellido);
         p1.setListaNum(p1.getListaNum());
+        System.out.println("");
         System.out.println("Introduce los 6 números de la apuesta entre 1-49 (incluidos).");
         for (int i = 0; i < p1.getListaNum().length; i++) {
             System.out.println("Número " + (i + 1) + ":");
